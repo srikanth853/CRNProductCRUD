@@ -7,14 +7,9 @@ namespace API.Controllers;
 
 [ApiController]
 [Route("api/v1/products")]
-public class ProductsController : ControllerBase
+public class ProductsController(IProductService productService) : ControllerBase
 {
-    private readonly IProductService _productService;
-
-    public ProductsController(IProductService productService)
-    {
-        _productService = productService;
-    }
+    private readonly IProductService _productService = productService;
 
     [HttpGet]
     public async Task<IActionResult> GetAll(int pageNumber = 1, int pageSize = 10)
@@ -30,7 +25,7 @@ public class ProductsController : ControllerBase
         return Ok(response);
     }
 
-   // [Authorize]
+    [Authorize]
     [HttpPost]
     public async Task<IActionResult> Create(CreateProductRequest request)
     {
@@ -38,7 +33,7 @@ public class ProductsController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = response.Id }, response);
     }
 
-   // [Authorize]
+    [Authorize]
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, UpdateProductRequest request)
     {
@@ -46,7 +41,7 @@ public class ProductsController : ControllerBase
         return Ok(response);
     }
 
-   // [Authorize]
+    [Authorize]
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {
