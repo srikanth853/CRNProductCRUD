@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/Solution Items/">
+    <File Path="docker-compose.yml" />
     <File Path="README.md" />
   </Folder>
   <Project Path="API.Tests/API.Tests.csproj" Id="d04ff79e-0db8-40b1-b4c7-daf1a1b6ddb0" />
